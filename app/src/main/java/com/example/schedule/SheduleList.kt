@@ -2,25 +2,33 @@ package com.example.schedule
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.SimpleAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.schedule.data.DataManager
+import com.example.schedule.databinding.ActivityMainBinding
+import com.example.schedule.databinding.ActivitySheduleListBinding
 
 class SheduleList : AppCompatActivity() {
+    lateinit var binding: ActivitySheduleListBinding
+    private val adapter = DayAdapter()
+    var dayList = DataManager.weekObjectFromJsonString().days
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_shedule_list)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding = ActivitySheduleListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        init()
+    }
+    private fun init(){
+        binding.apply {
+            rcViewShedule.layoutManager = LinearLayoutManager(this@SheduleList)
+            rcViewShedule.adapter = adapter
+            adapter.newDaysFromWeek(dayList)
         }
-        var scheduleList = findViewById<ListView>(R.id.sсheduleList)
-        var daysBlock = listOf("пон","втор")
-        val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1 ,daysBlock)
-        scheduleList.adapter
     }
 }
