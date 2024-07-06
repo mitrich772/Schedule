@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             //saveData(group) // тут работает
         }
         guestButton.setOnClickListener {
-            val intentSchedule = Intent(this,SheduleList::class.java)
+            val intentSchedule = Intent(this,SсheduleList::class.java)
             startActivity(intentSchedule)
         }
 
