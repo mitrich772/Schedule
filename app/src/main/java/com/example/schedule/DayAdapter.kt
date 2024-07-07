@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.schedule.data.Day
 import com.example.schedule.databinding.DayElementBinding
+import java.io.Console
 
 class DayAdapter : RecyclerView.Adapter<DayAdapter.DayHolder>() {
     var dayList = ArrayList<Day>()

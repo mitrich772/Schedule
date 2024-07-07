@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             var gettedText = registrationText.text.toString()
             group = gettedText
             mainTextView.text = gettedText
-            //saveData(group) // тут работает
+            saveData(group) // тут работает
         }
         guestButton.setOnClickListener {
             val intentSchedule = Intent(this,SсheduleList::class.java)
