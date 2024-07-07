@@ -8,7 +8,7 @@ import com.example.schedule.databinding.ActivitySheduleListBinding
 
 class SсheduleList : AppCompatActivity() {
     lateinit var binding: ActivitySheduleListBinding
-    private val adapter = DayAdapter()
+    private val dayAdapter = DayAdapter()
     var dayList = DataManager.weekObjectFromJsonString().days
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +19,8 @@ class SсheduleList : AppCompatActivity() {
     private fun init(){
         binding.apply {
             rcViewShedule.layoutManager = LinearLayoutManager(this@SсheduleList)
-            rcViewShedule.adapter = adapter
-            adapter.newDaysFromWeek(dayList)
+            rcViewShedule.adapter = dayAdapter
+            dayAdapter.newDaysFromWeek(dayList)
         }
     }
 }

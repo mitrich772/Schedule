@@ -3,6 +3,7 @@ package com.example.schedule
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.schedule.data.Day
 import com.example.schedule.databinding.DayElementBinding
@@ -12,8 +13,15 @@ class DayAdapter : RecyclerView.Adapter<DayAdapter.DayHolder>() {
     class DayHolder(item:View) : RecyclerView.ViewHolder(item) {
 
         val binding = DayElementBinding.bind(item)
+
         fun bind(day : Day) = with(binding){
+            val lessonAdapter = LessonAdapter()
+
             dayName.text = day.name
+
+            rcLessonList.layoutManager = LinearLayoutManager(rcLessonList.context)
+            rcLessonList.adapter = lessonAdapter
+            lessonAdapter.newLessonsFromDay(day.lessons)
         }
     }
 
